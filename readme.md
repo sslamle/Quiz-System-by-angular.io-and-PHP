@@ -1,8 +1,12 @@
 # Screenshots
 
+
+
 ![Mamager](img/manager.PNG)
+Manager page
 
 ![Quiz](img/quiz.PNG)
+Quiz page
 
 # Wamp version
 - wamp: 3.1.0 64 bit
