@@ -1,3 +1,9 @@
+# Screenshots
+
+![Mamager](img/manager.PNG)
+
+![Quiz](img/quiz.PNG)
+
 # Wamp version
 - wamp: 3.1.0 64 bit
 - MySQL: 5.7.19
