@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+  <form #staffForm="ngForm" (ngSubmit)="save()">
+    <ss-autocomplete [(ngModel)]="staff.unit_id" placeholder="Chọn đơn vị" name="unit" [source]="units"></ss-autocomplete>
+    <mat-form-field>
+        <input matInput placeholder="Mã nhân viên" name="code" [(ngModel)]="staff.code" required #code="ngModel">
+    </mat-form-field>
+    <div [hidden]="code.valid || code.pristine" class="alert alert-danger">
+        Phải nhập mã nhân viên
+    </div>
+    <div [hidden]="!error.code" class="alert alert-danger">
+        {{error.code}}
+    </div>
+
+    <mat-form-field>
+        <input matInput placeholder="Tên nhân viên" name="name" [(ngModel)]="staff.name" required #name="ngModel">
+    </mat-form-field>
+    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+        Phải nhập tên nhân viên
+    </div>
+
+    <button class="pull-right" mat-raised-button color="primary" [disabled]="!staffForm.form.valid || isRequesting">
+      <span *ngIf="!isRequesting">Lưu</span>
+      <span *ngIf="isRequesting">Đang Lưu ...</span>
+    </button>
+    <button mat-raised-button (click)="close()" type="button">Đóng</button>
+</form>
+</mat-dialog-content>

@@ -1,0 +1,66 @@
+.test-screen {
+    .test-info {
+        background-color: #fff;
+        @include mat-elevation(2);
+        padding: 0.5rem 1rem 0.95rem 1rem;
+        color: #17a2b8;
+        font-size: 1.25rem;
+        height: 55px;
+    }
+    
+    .test-question {
+        width: calc(100% - 300px);
+
+        .test-question-wrapper {
+            background-color: #fff;
+            @include mat-elevation(2);
+            max-width: 800px;
+            margin: 30px auto 0 auto;
+            padding: 16px;
+            .test-question-content {
+                font-size: 1.4em;
+                margin-bottom: 16px;
+            }
+
+            .actions {
+                text-align: center;
+                border-bottom: 1px solid #ccc;
+                padding-bottom: 16px;
+                margin-bottom: 16px;
+            }
+
+        }
+    }
+
+    .test-questions-container {
+        @include mat-elevation(1);
+        position: absolute;
+        top: 55px;
+        right: 0;
+        height: calc(100vh - 55px);
+        background-color: #343a40;
+        width: 300px;
+
+        .test-time {
+            color: #fff;
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+            .test-time-used {
+                font-size: 2rem;
+                font-weight: bold;
+            }
+        }
+
+        .test-questions-list {
+            padding: 8px;
+
+            button {
+                margin: 4px;
+                outline: none;
+                font-size: 1.2em;
+            }
+
+        }
+
+    }
+}

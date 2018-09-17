@@ -1,0 +1,8 @@
+@import './table-like-excel';
+@import './table-like-material';
+
+.table-highlight {
+    tbody tr:hover {
+        background: #E0F2F1;
+    }
+}

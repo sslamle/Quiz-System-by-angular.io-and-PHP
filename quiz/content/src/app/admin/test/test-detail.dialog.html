@@ -1,0 +1,45 @@
+<div class="p-b-md">
+    Đợt thi: <strong>{{data.exam}}</strong> - Chuyên ngành: <strong>{{data.category}}</strong>
+    <br/>
+    Nhân viên: <strong>{{data.staffName}}</strong> - Số điểm: <strong>{{test.score}}/{{data.numberOfQuestion}}</strong> - Kết quả: <strong *ngIf="this.is_pass">Đạt</strong><strong *ngIf="!this.is_pass">Không Đạt</strong>
+</div>
+<mat-dialog-content>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Câu hỏi</th>
+                <th>Đáp án</th>
+                <th>Trả lời</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let question of questions">
+                <tr class="bg-info"><td colspan="3">{{question.content}}</td></tr>
+                <tr>
+                    <td>A. {{question.anwser1}}</td>
+                    <td class="text-center"><span *ngIf="question.is_anwser1_right">X</span></td>
+                    <td class="text-center"><span *ngIf="question.is_staff_anwser1_right">X</span></td>
+                </tr>
+                <tr>
+                    <td>B. {{question.anwser2}}</td>
+                    <td class="text-center"><span *ngIf="question.is_anwser2_right">X</span></td>
+                    <td class="text-center"><span *ngIf="question.is_staff_anwser2_right">X</span></td>
+                </tr>
+                <tr>
+                    <td>C. {{question.anwser3}}</td>
+                    <td class="text-center"><span *ngIf="question.is_anwser3_right">X</span></td>
+                    <td class="text-center"><span *ngIf="question.is_staff_anwser3_right">X</span></td>
+                </tr>
+                <tr>
+                    <td>D. {{question.anwser4}}</td>
+                    <td class="text-center"><span *ngIf="question.is_anwser4_right">X</span></td>
+                    <td class="text-center"><span *ngIf="question.is_staff_anwser4_right">X</span></td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</mat-dialog-content>
+<div class="p-t-md">
+    <button mat-raised-button [mat-dialog-close]="" class="pull-right">Đóng</button>
+</div>
+      

@@ -1,0 +1,40 @@
+<section>
+    <div class="section-header">
+        <div class="row">
+            <div class="col-sm">
+                Đợt thi
+            </div>
+            <div class="col-sm">
+                <button class="pull-right" mat-raised-button color="primary" (click)="openExamForm()"><fa-icon [icon]="faPlus"></fa-icon> Thêm</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-body">
+        <table-material [tableData]="tableData"></table-material>
+    </div>
+</section>
+
+<!-- Template for table cell -->
+<ng-template #examCreatedTemplate let-element="element">
+    {{element.created_at | date: 'dd/MM/yyyy'}}
+</ng-template>
+
+<ng-template #examActiveTemplate let-element="element">
+    <span *ngIf="element.is_active" class="text-success">Đang mở thi</span>
+    <span *ngIf="!element.is_active" class="text-warning">Đã đóng</span>
+</ng-template>
+
+<ng-template #examActionTemplate let-element="element">
+    <a (click)="openExamDetail(element)" class="table-action" matTooltip="Xem chi tiết">
+        <fa-icon [icon]="faEye"></fa-icon>
+    </a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a (click)="openExamForm(element)" class="table-action" matTooltip="Chỉnh sửa">
+        <fa-icon [icon]="faEdit"></fa-icon>
+    </a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a (click)="deleteItem(element)" class="table-action" matTooltip="Xóa">
+        <fa-icon [icon]="faTrash"></fa-icon>
+    </a>
+</ng-template>

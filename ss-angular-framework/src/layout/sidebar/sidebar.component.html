@@ -1,0 +1,32 @@
+<section>
+    <aside class="sidebar">
+        <ul class="sidebar-menu">
+            <ng-container *ngFor="let item of menuItems">
+                <li *ngIf="!item.permissions || authService.hasPermissionForTemplate(item.permissions)" (click)="toggleSidebar()">
+                    <a class="nav-link" *ngIf="item.isExternalUrl" [href]="item.router" target="_blank">
+                        <fa-icon [icon]="item.icon"></fa-icon> {{item.text}}
+                    </a>
+
+                    <a class="nav-link" *ngIf="!item.isExternalUrl && !item.children" [routerLink]="item.router" routerLinkActive="active">
+                        <fa-icon [icon]="item.icon"></fa-icon> {{item.text}}
+                    </a>
+
+                    <!-- Children memu -->
+                    <a class="nav-link has-arrow" *ngIf="item.children" routerLinkActive="active" [ngClass]="{'show-sub-menu': item.isShowSubMenu}" (click)="toggleShowSubMenu(item)">
+                        <fa-icon [icon]="item.icon"></fa-icon> {{item.text}}
+                    </a>
+                    <ul *ngIf="item.children && item.isShowSubMenu" class="sub-menu">
+                        <li *ngFor="let childItem of item.children">
+                            <a class="nav-link" [routerLink]="childItem.router" routerLinkActive="active">
+                                {{childItem.text}}
+                            </a>
+                        </li>
+                    </ul>                    
+                </li>           
+            </ng-container>
+        </ul>
+        <div class="aside-footer">
+            Copyright @ {{year}}
+        </div>
+    </aside>
+</section>

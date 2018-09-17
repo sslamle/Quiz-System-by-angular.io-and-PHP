@@ -1,0 +1,91 @@
+$left-form-width: 300px !default;
+$left-form-bg: #EEEEEE !default;
+
+// Header
+@import './header/header.component';
+
+/// Sidebar
+@import './sidebar/sidebar.component';
+
+////////// Main content
+.right-content {
+    margin: 0 0 0 300px;   
+    padding: 33px 16px;
+
+    &.has-fixed-top-navbar {
+        padding-top: calc( 0px + #{$navbar-height})
+    }
+}
+
+///////////// Page
+.section-header {
+    color: $section-header-color;
+    font-size: 1.5em;
+    // @include mat-elevation(1);
+    // background-color: #fff;
+    padding: 16px;
+    // border-bottom: 1px solid rgba(150, 156, 156, 0.4);
+
+    .mat-form-field {
+        font-size: 1rem;
+    }
+
+    .search-box {
+        font-size: 1rem;
+        border: 1px solid #ced4da;
+        padding: 5px;
+        border-right: none;
+        input {
+            outline: none;
+            border: none;
+        }
+    }
+}
+
+
+.section-body {
+    margin-bottom: 16px;
+    // @include mat-elevation(1);
+    padding: 16px;
+    // background-color: #fff;
+}
+
+///////////////// left form
+.left-form {
+    width: $left-form-width;
+    background-color: $left-form-bg;
+    @include mat-elevation(3);
+    position: fixed;
+    top: $navbar-height;
+    height: calc(100vh - #{$navbar-height});
+    left: $sidebar-width;
+    z-index: 500;
+    padding: 16px;
+}
+
+.has-left-form {
+    margin-left: $left-form-width;
+}
+
+///////// Responsive
+@include media-breakpoint-down('md') {
+    .right-content {
+        margin: 0;
+    }
+}
+
+@include media-breakpoint-down('sm') {
+    .section-header {
+        button {
+            width: 100%;
+        }
+        .search-box {
+            border-right: 1px solid #ced4da;
+            width: 100%;
+            input {
+                width: 100%;
+
+            }
+        }
+    }
+}

@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>{{data.title}}</h2>
+<mat-dialog-content>
+    <p>{{data.content}}</p>
+</mat-dialog-content>
+
+<div mat-dialog-action>
+    <button mat-raised-button color="primary" class="pull-right" [mat-dialog-close]="true">{{data.okText}}</button>
+    <button mat-raised-button class="pull-right" style="margin-right: 8px;" [mat-dialog-close]="false">{{data.cancelText}}</button>
+</div>

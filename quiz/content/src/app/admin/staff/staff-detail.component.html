@@ -1,0 +1,16 @@
+<section>
+        <div class="section-header">
+            Nhân viên : {{ staff.name }} - Mã: {{ staff.code }}
+            <!-- <button class="pull-right" mat-raised-button color="primary" (click)="openExamForm()"><fa-icon [icon]="faPlus"></fa-icon> Thêm</button> -->
+        </div>
+          
+        <div class="section-body">
+            <table-material [tableData]="tableData"></table-material>
+        </div>
+    </section>
+    
+    <ng-template #testResultTemplate let-element="element">
+        <span class="badge badge-success pointer" *ngIf="element.is_pass" matTooltip="Xem bài thi" (click)="viewTest(element)">Đạt (Điểm {{element.score}}/{{element.number_of_questions}})</span>
+        <span class="badge badge-danger pointer" *ngIf="!element.is_pass && element.score !== undefined" matTooltip="Xem bài thi" (click)="viewTest(element)">Không đạt (Điểm {{element.score}}/{{element.number_of_questions}})</span>
+        <span class="badge badge-warning" *ngIf="!element.is_pass && element.score === undefined">Không có bài thi</span>
+    </ng-template>

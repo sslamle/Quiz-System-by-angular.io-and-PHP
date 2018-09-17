@@ -1,0 +1,38 @@
+.cdk-column-question>div {
+    width: 100%;
+}
+
+.question-card {
+    &.in-valid {
+        background-color: #ffc107;
+    }
+
+    &.is-saved {
+        background-color: #20c997;
+    }
+    
+    .question-anwser-input {
+        display: grid;
+        grid-template-columns: 25px 1fr;
+        align-items: center;
+    }
+}
+
+
+.admin-questions-table {
+    .mat-header-row {
+        display: none;
+    }
+
+    .mat-row {
+        padding: 12px;
+    }
+
+    .question-anwser {
+        margin:0 0 8px 16px;
+
+        &.text-success {
+            font-weight: bold;
+        }
+    }
+}

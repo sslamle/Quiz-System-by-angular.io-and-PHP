@@ -1,0 +1,39 @@
+<section>
+    <div class="section-header">
+        <div class="row">
+            <div class="col-sm">
+                Nhân viên ({{tableData.data.length}})
+            </div>
+            <div class="col-sm">
+                <button class="pull-right" mat-raised-button color="primary" (click)="openStaffForm()"><fa-icon [icon]="faPlus"></fa-icon> Thêm</button>
+                <div class="search-box pull-right">
+                    <input placeholder="Tìm kiếm" [(ngModel)]="searchText">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-body">
+        <table-material [tableData]="tableData" [searchText]="searchText"></table-material>
+    </div>
+</section>
+
+<!-- Template for table cell -->
+<ng-template #staffActionTemplate let-element="element">
+    <a (click)="openStaffDetail(element)" class="table-action" matTooltip="Xem các bài thi">
+        <fa-icon [icon]="faEye"></fa-icon>
+    </a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a (click)="openStaffForm(element)" class="table-action" matTooltip="Chỉnh sửa">
+        <fa-icon [icon]="faEdit"></fa-icon>
+    </a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a (click)="deleteItem(element)" class="table-action" matTooltip="Xóa">
+        <fa-icon [icon]="faTrash"></fa-icon>
+    </a>
+</ng-template>
+
+<ng-template #staffUnitTemplate let-element="element">
+    <span *ngIf="unitList[element.unit_id]">{{unitList[element.unit_id].name}}</span>
+    <span *ngIf="!unitList[element.unit_id]">Không có đơn vị</span>
+</ng-template>

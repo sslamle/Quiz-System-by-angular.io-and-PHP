@@ -1,0 +1,109 @@
+
+@import 'variables';
+
+// Bootstrap and its default variables
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/code";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/tables";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/transitions";
+@import "~bootstrap/scss/dropdown";
+@import "~bootstrap/scss/button-group";
+@import "~bootstrap/scss/input-group";
+@import "~bootstrap/scss/custom-forms";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/card";
+@import "~bootstrap/scss/breadcrumb";
+@import "~bootstrap/scss/pagination";
+@import "~bootstrap/scss/badge";
+@import "~bootstrap/scss/jumbotron";
+@import "~bootstrap/scss/alert";
+@import "~bootstrap/scss/progress";
+@import "~bootstrap/scss/media";
+@import "~bootstrap/scss/list-group";
+@import "~bootstrap/scss/close";
+@import "~bootstrap/scss/modal";
+@import "~bootstrap/scss/tooltip";
+@import "~bootstrap/scss/popover";
+@import "~bootstrap/scss/carousel";
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/print";
+
+
+// ---------- Material -----------------------------------
+
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://www.google.com/design/spec/style/color.html
+$ss-app-primary: mat-palette($mat-indigo) !default;
+$ss-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$ss-app-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$ss-app-theme: mat-light-theme($ss-app-primary, $ss-app-accent, $ss-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($ss-app-theme);
+
+.mat-raised-button.mat-teal, .mat-fab.mat-teal, .mat-mini-fab.mat-teal {
+  background-color: #20c997;
+}
+
+.mat-raised-button.mat-success, .mat-fab.mat-success, .mat-mini-fab.mat-success {
+  background-color: #28a745;
+  color: #fff;
+}
+
+/////////// Toaster ////////////
+@import "~ngx-toastr/toastr-bs4-alert";
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+
+////////////////////////
+ 
+@import 'utils';
+
+//////////////////////////////////////
+
+html {
+  font-size: $html-font-size;
+}
+
+body {
+  background-color: $body-bg;
+}
+
+button {
+  outline: 0;
+  &:focus {
+    outline: 0;
+  }
+}
+
+/////////////// Components /////////////////
+@import '../layout/layout';
+@import '../components/login/login.component';
+@import '../components/table-material/table-material.component';
+@import '../shared/dialog/dialog';
+@import '../components/form/ss-autocomplete/ss-autocomplete.component';
+@import '../directives/fix-table-header/fix-table-header';
+
+////////////// Only CSS components /////////////
+@import './components/table/table';

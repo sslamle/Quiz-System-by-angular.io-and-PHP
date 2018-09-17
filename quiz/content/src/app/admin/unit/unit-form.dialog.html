@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+  <form #unitForm="ngForm" (ngSubmit)="save()">
+    <mat-form-field>
+        <input matInput placeholder="Tên đơn vị" name="name" [(ngModel)]="unit.name" required #name="ngModel">
+    </mat-form-field>
+    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+        Phải nhập tên đơn vị
+    </div>
+
+    <button class="pull-right" mat-raised-button color="primary" [disabled]="!unitForm.form.valid || isRequesting">
+      <span *ngIf="!isRequesting">Lưu</span>
+      <span *ngIf="isRequesting">Đang Lưu ...</span>
+    </button>
+    <button mat-raised-button (click)="close()" type="button">Đóng</button>
+</form>
+</mat-dialog-content>

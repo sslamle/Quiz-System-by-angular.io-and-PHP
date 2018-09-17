@@ -1,0 +1,43 @@
+<section>
+    <div class="section-header">
+        Đổi mật khẩu
+    </div>
+
+    <div class="section-body">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form #userForm="ngForm" (ngSubmit)="save()">
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Mật khẩu cũ" type="password" name="oldPassword" [(ngModel)]="user.oldPassword" [required]="!user.id" #oldPassword="ngModel">
+                    </mat-form-field>
+                    <div [hidden]="oldPassword.valid || oldPassword.pristine" class="alert alert-danger">
+                        Phải nhập mật khẩu cũ
+                    </div>
+                    <div [hidden]="!serverErr.oldPassword" class="alert alert-danger">
+                        {{ serverErr.oldPassword }}
+                    </div>
+
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Mật khẩu mới" type="password" name="password" [(ngModel)]="user.password" [required]="!user.id" #password="ngModel">
+                    </mat-form-field>
+                    <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+                        Phải nhập mật khẩu mới
+                    </div>
+            
+                    <mat-form-field class="full-width">
+                    <input matInput placeholder="Nhập lại mật khẩu" type="password" name="repassword" [(ngModel)]="user.repassword" [required]="!user.id || user.password" #repassword="ngModel">
+                    </mat-form-field>
+                    <div [hidden]="repassword.valid || repassword.pristine" class="alert alert-danger">
+                        Phải nhập phẩn kiểm tra mật khẩu
+                    </div>
+                    <div [hidden]="user.password === user.repassword" class="alert alert-danger">
+                        Nhập khẩu nhập lại phải giống với mật khẩu mới
+                    </div>
+
+                    <button mat-raised-button color="primary" class="full-width" [disabled]="!userForm.form.valid || user.password !== user.repassword">Lưu</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+

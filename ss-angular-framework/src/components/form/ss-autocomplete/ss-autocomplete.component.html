@@ -1,0 +1,9 @@
+<div class="ss-autocomplete-wrapper">
+    <input [(ngModel)]="searchStr" (keydown)="onSearchInputKeydown($event)" (blur)="toggleSearch(false)" (focus)="toggleSearch(true)" placeholder="{{placeholder}}"/>
+    <!-- Choice list -->
+    <div class="ss-choice-list ss-select-panel" *ngIf="isOpeningSearch && searchStr.length">
+        <div class="ss-select-content">
+            <div class="ss-option" *ngFor="let item of selectChoices; let i = index" (mousedown)="selectItem(item, $event)" [ngClass]="{active: i == currentChoiceIndex}">{{item.name}}</div>
+        </div>
+    </div>
+</div>

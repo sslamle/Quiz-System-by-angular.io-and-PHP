@@ -1,0 +1,24 @@
+<div class="login-wrapper">
+    <mat-card class="login-box">
+        <img class="login-img" src="img/avatar.png"/>
+        <form #loginForm="ngForm" (ngSubmit)="login()">
+            <mat-form-field>
+                <input matInput placeholder="Tên đăng nhập" name="username" [(ngModel)]="loginData.username" required #username="ngModel">
+            </mat-form-field>
+            <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
+                Phải nhập tên đăng nhập
+            </div>
+            <mat-form-field>
+                <input matInput placeholder="Mật khẩu" type="password" name="password" [(ngModel)]="loginData.password" required #password="ngModel">
+            </mat-form-field>
+            <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+                Phải nhập mật khẩu
+            </div>
+
+            <div [hidden]="!result.msg.length" class="alert text-center" [ngClass]="{'alert-danger': !result.isSuccess, 'alert-success': result.isSuccess}">
+                {{result.msg}}
+            </div>
+            <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Đăng nhập</button>
+        </form>
+    </mat-card>
+</div>

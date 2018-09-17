@@ -1,0 +1,32 @@
+<section>
+    <div class="section-header">
+        Quản trị viên
+        <button class="pull-right" mat-raised-button color="primary" (click)="openUserForm()"><fa-icon [icon]="faPlus"></fa-icon> Thêm</button>
+    </div>
+
+    <div class="section-body">
+        <table-material [tableData]="tableData"></table-material>
+    </div>
+</section>
+
+<!-- Template for table cell -->
+<ng-template #userRoleTemplate let-element="element">
+    <span *ngIf="element.role == 'admin'">Quản trị viên</span>
+    <span *ngIf="element.role == 'mod'">Quản lý</span>
+</ng-template>
+
+<ng-template #userActionTemplate let-element="element">
+    <div *ngIf="authService.currentUser?.role === 'admin'">
+        <a (click)="openUserForm(element)" class="table-action" matTooltip="Chỉnh sửa">
+            <fa-icon [icon]="faEdit"></fa-icon>
+        </a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a (click)="openUserForm(element, true)" class="table-action" matTooltip="Đổi mật khẩu">
+            <fa-icon [icon]="faKey"></fa-icon>
+        </a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a (click)="deleteItem(element)" class="table-action" matTooltip="Xóa">
+            <fa-icon [icon]="faTrash"></fa-icon>
+        </a>
+    </div>
+</ng-template>

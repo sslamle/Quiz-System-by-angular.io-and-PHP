@@ -1,0 +1,88 @@
+<section>
+    <div class="section-header">
+        <div class="row">
+            <div class="col-sm-4">
+                Quản lý câu hỏi ({{tableData.data.length}})
+            </div>
+            <div class="col-sm-8">
+                <button class="pull-right" mat-raised-button color="primary" (click)="goToQuestionAddScreen()"><fa-icon [icon]="faPlus"></fa-icon> Thêm</button>
+                <div class="search-box pull-right">
+                    <input placeholder="Tìm kiếm" #searchInput (keyup)="onSearchTextChange(searchInput.value)">
+                </div>
+                <mat-form-field class="pull-right m-r-md">
+                    <mat-select placeholder="Chọn chuyên ngành" [(ngModel)]="selectedCategoryId" (selectionChange)="getQuestions(selectedCategoryId)">
+                        <mat-option *ngFor="let cat of categories" [value]="cat.id">
+                        {{ cat.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-body p-r-none p-l-none">
+        <mat-table #table [dataSource]="tableData" class="admin-questions-table">
+            <ng-container matColumnDef="question">
+                <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                <mat-cell *matCellDef="let question"> 
+                    <!-- <mat-card class="m-t-md question-card p-b-none"> -->
+                        <div *ngIf="!question.isEditing">
+                            <p>{{question.content}}</p>
+                            <p class="question-anwser" [ngClass]="{'text-success': question.is_anwser1_right}">A. {{question.anwser1}}</p>
+                            <p class="question-anwser" [ngClass]="{'text-success': question.is_anwser2_right}">B. {{question.anwser2}}</p>
+                            <p class="question-anwser" [ngClass]="{'text-success': question.is_anwser3_right}">C. {{question.anwser3}}</p>
+                            <p class="question-anwser" [ngClass]="{'text-success': question.is_anwser4_right}">D. {{question.anwser4}}</p>
+                            <div class="text-right">
+                                <button mat-button color="warn" (click)="removeQuestion(question)"><fa-icon [icon]="faTrashAlt"></fa-icon> Xóa câu hỏi</button>
+                                <button mat-button color="primary" (click)="editQuestion(question)"><fa-icon [icon]="faEdit"></fa-icon> Sửa câu hỏi</button>
+                            </div>
+                        </div>
+                        <!-- Edit question form -->
+                        <div *ngIf="question.isEditing" class="question-card">
+                            <mat-form-field class="full-width">
+                                <textarea matInput [(ngModel)]="question.content" placeholder="Câu hỏi" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="5"></textarea>
+                            </mat-form-field>
+                            <div class="question-anwser-input">
+                                <mat-checkbox [(ngModel)]="question.is_anwser1_right"></mat-checkbox>
+                                <mat-form-field>
+                                    <textarea matInput [(ngModel)]="question.anwser1" placeholder="Câu trả lời A" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="3"></textarea>
+                                </mat-form-field>
+                            </div>
+                            <div class="question-anwser-input">
+                                <mat-checkbox [(ngModel)]="question.is_anwser2_right"></mat-checkbox>
+                                <mat-form-field>
+                                    <textarea matInput [(ngModel)]="question.anwser2" placeholder="Câu trả lời B" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="3"></textarea>
+                                </mat-form-field>
+                            </div>
+                            <div class="question-anwser-input">
+                                <mat-checkbox [(ngModel)]="question.is_anwser3_right"></mat-checkbox>
+                                <mat-form-field>
+                                    <textarea matInput [(ngModel)]="question.anwser3" placeholder="Câu trả lời C" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="3"></textarea>
+                                </mat-form-field>
+                            </div>   
+                            <div class="question-anwser-input">
+                                <mat-checkbox [(ngModel)]="question.is_anwser4_right"></mat-checkbox>
+                                <mat-form-field>
+                                    <textarea matInput [(ngModel)]="question.anwser4" placeholder="Câu trả lời D" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="3" (keydown.Tab)="addQuestion($event)"></textarea>
+                                </mat-form-field>
+                            </div>
+                            <div class="text-right">
+                                <button mat-button color="warn" (click)="cancelEditQuestion(question)"><fa-icon [icon]="faTimes"></fa-icon> Hủy</button>
+                                <button mat-button color="primary" (click)="saveQuestion(question)"><fa-icon [icon]="faSave"></fa-icon> Lưu câu hỏi</button>
+                            </div>
+                        </div>
+                    <!-- </mat-card> -->
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="['question']"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: ['question'];"></mat-row>
+        </mat-table>
+
+        <mat-paginator #paginator
+                        [pageSize]="10"
+                        [pageSizeOptions]="[2, 5, 10, 25, 100]"
+                        [showFirstLastButtons]="true"
+                        >
+        </mat-paginator>
+    </div>
+</section>

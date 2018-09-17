@@ -1,0 +1,27 @@
+<section>
+    <div class="section-header">
+        <div class="row">
+            <div class="col-sm">
+                Đơn vị
+            </div>
+            <div class="col-sm">
+                <button class="pull-right" mat-raised-button color="primary" (click)="openUnitForm()"><fa-icon [icon]="faPlus"></fa-icon> Thêm</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-body">
+        <table-material [tableData]="tableData"></table-material>
+    </div>
+</section>
+
+<!-- Template for table cell -->
+<ng-template #unitActionTemplate let-element="element">
+    <a (click)="openUnitForm(element)" class="table-action" matTooltip="Chỉnh sửa">
+        <fa-icon [icon]="faEdit"></fa-icon>
+    </a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a (click)="deleteItem(element)" class="table-action" matTooltip="Xóa">
+        <fa-icon [icon]="faTrash"></fa-icon>
+    </a>
+</ng-template>

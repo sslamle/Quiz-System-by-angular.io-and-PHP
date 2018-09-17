@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+  <form #categoryForm="ngForm" (ngSubmit)="save()">
+    <mat-form-field>
+        <input matInput placeholder="Tên chuyên ngành" name="name" [(ngModel)]="category.name" required #name="ngModel">
+    </mat-form-field>
+    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+        Phải nhập tên chuyên ngành
+    </div>
+
+    <div>
+        <mat-checkbox [(ngModel)]="category.is_general" name="general">Đây là chuyên mục chung</mat-checkbox>
+    </div>
+
+
+    <button class="pull-right" mat-raised-button color="primary" [disabled]="!categoryForm.form.valid || isRequesting">
+      <span *ngIf="!isRequesting">Lưu</span>
+      <span *ngIf="isRequesting">Đang Lưu ...</span>
+    </button>
+    <button mat-raised-button (click)="close()" type="button">Đóng</button>
+</form>
+</mat-dialog-content>

@@ -1,0 +1,25 @@
+.login-wrapper {
+    padding: 20px;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+    height: 100vh;
+
+    .mat-form-field, button {
+        width: 100%;
+    }
+
+    .login-img {
+        width: 96px;
+        height: 96px;
+        margin: 0 auto 10px;
+        display: block;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+    }
+}
+
+.login-box {
+    margin: 0 auto;
+    max-width: 400px;
+}

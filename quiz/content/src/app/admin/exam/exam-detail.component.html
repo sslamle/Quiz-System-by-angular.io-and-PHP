@@ -1,0 +1,42 @@
+<section>
+    <div class="section-header">
+        <div class="row">
+            <div class="col-sm-8">Đợt thi : {{ exam.name }}</div>
+            <div class="col-sm-4">
+                <div class="search-box pull-right" style="border-right: 1px solid #ced4da;">
+                    <input placeholder="Tìm kiếm" #searchInput (keyup)="onSearchTextChange(searchInput.value)">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="exam-info border bg-primary text-white p-sm">
+        Ngày tạo: <span class="badge badge-warning m-r-md">{{exam.created_at | date : 'dd/MM/yyyy'}}</span>
+        Số câu hỏi 1 bài thi: <span class="badge badge-warning m-r-md">{{exam.number_of_questions}}</span>
+        Số điểm đậu: <span class="badge badge-warning m-r-md">{{exam.score_to_pass}}/{{exam.number_of_questions}}</span>
+        Thời gian làm bài: <span class="badge badge-warning">{{exam.time_in_minute}} phút</span>
+    </div>
+    <div class="result-info border p-sm bg-light container-fluid">
+        <div class="row">
+            <div class="col-sm text-center">
+                <button type="button" class="btn btn-success">Đậu: <span class="badge badge-light">{{resultCount.pass}}</span></button>
+            </div>
+            <div class="col-sm text-center">
+                <button type="button" class="btn btn-danger">Rớt: <span class="badge badge-light">{{resultCount.notPass}}</span></button>
+            </div>
+            <div class="col-sm text-center">
+                <button type="button" class="btn btn-warning">Không có bài thi: <span class="badge badge-light">{{resultCount.dontHaveTest}}</span></button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section-body">
+        <table-material [tableData]="tableData"></table-material>
+    </div>
+</section>
+
+<ng-template #testResultTemplate let-element="element">
+    <span class="badge badge-success pointer" *ngIf="element.is_pass" matTooltip="Xem bài thi" (click)="viewTest(element)">Đạt (Điểm {{element.score}}/{{exam.number_of_questions}})</span>
+    <span class="badge badge-danger pointer" *ngIf="!element.is_pass && element.score !== undefined" matTooltip="Xem bài thi" (click)="viewTest(element)">Không đạt (Điểm {{element.score}}/{{exam.number_of_questions}})</span>
+    <span class="badge badge-warning" *ngIf="!element.is_pass && element.score === undefined">Không có bài thi</span>
+</ng-template>

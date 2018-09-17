@@ -1,0 +1,33 @@
+.ss-autocomplete-wrapper {
+    position: relative;
+
+    .ss-choice-list {
+        background: #fff;
+        border-top: 1px solid #ccc;
+        @include mat-elevation(1);
+        position: absolute;
+        top: 100%;
+        z-index: 1000;
+    
+        .ss-option {
+            padding: 3px;
+            cursor: pointer;
+
+            &.active, &:hover {
+                background: rgba(0, 0, 0, 0.1); 
+            }
+        }
+    }
+
+    .mat-dialog-content & {
+        width: 100%;
+        margin-bottom: 20px;
+        input {
+            border: none;
+            width: 100%;
+            outline: none;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+
+        }
+    }
+}

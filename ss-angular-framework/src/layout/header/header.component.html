@@ -1,0 +1,21 @@
+<nav class="navbar fixed-top-navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand d-block d-lg-none float-left mr-1" (click)="toggleSidebar()">
+                <fa-icon [icon]="faBars"></fa-icon>
+            </a>
+            <a class="navbar-brand d-none d-sm-block">
+                {{title}}
+            </a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <div class="user-info">
+                <img src="img/avatar.png"/>
+                <span class="user-info-container">
+                    <a [routerLink]="'/admin/profile'" style="color: inherit;">{{authData.name}}</a>
+                    <small (click)="logout()" class="logout-button">Đăng xuất</small>
+                </span>
+            </div>
+        </ul>
+    </div>
+</nav>

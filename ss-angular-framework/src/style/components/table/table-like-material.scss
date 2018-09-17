@@ -1,0 +1,20 @@
+.table-material {
+    thead {
+        th {
+            text-transform: uppercase;
+            border-top: none;
+            border-bottom: none;
+            font-size: 12px;
+        }
+    }
+    
+    .table-action {
+        cursor: pointer;
+    }
+
+    tbody {
+        tr:hover {
+            background-color: rgba(33, 33, 33, 0.05);
+        }
+    }
+}

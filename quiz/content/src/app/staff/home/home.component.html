@@ -1,0 +1,41 @@
+<div class="home-screen container-fluid">
+  <div class="row">
+    <div class="col-6 info-box-wrapper text-center">
+        <h1>Kiểm tra lý thuyết kiến thức chuyên môn và kỹ năng thực hành y khoa</h1>
+        <p>Chào mừng bạn đến với hệ thống Kiểm tra lý thuyết kiến thức chuyên môn và kỹ năng thực hành y khoa của Trung tâm Y tế Huyện Hòa Vang.</p>
+
+        <div class="exam-form">
+          <mat-form-field>
+            <mat-select placeholder="Chọn đợt thi" [(ngModel)]="selectedExam">
+              <mat-option *ngFor="let exam of exams" [value]="exam">
+                {{ exam.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select placeholder="Chọn chuyên ngành" [(ngModel)]="selectedCategory">
+              <mat-option *ngFor="let category of categories" [value]="category">
+                {{ category.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <p>Nhập mã số của bạn và nhấn nút <strong>[Kiểm tra]</strong> để kiểm tra họ tên của bạn.</p>
+          <mat-form-field>
+            <input matInput placeholder="Mã số" [(ngModel)]="staffCode">
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="checkStaffCode()">Kiểm tra</button>
+          <p *ngIf="staff.isChecked && !staff.name" class="text-danger">Mã số này không tồn tại.</p>
+          <p *ngIf="staff.name" class="text-success text-uppercase"><strong>{{staff.name}}</strong></p>
+
+          <p *ngIf="staff.name">Nếu mã số đã đúng, nhấn nút <strong>[Vào thi]</strong> để bắt đầu</p>
+          <p *ngIf="staff.name"><button mat-raised-button color="primary" (click)="goToTest()">Vào thi</button></p>
+        </div>
+    </div>
+    <div class="col-6"></div>
+  </div>
+  <div class="home-navigation">
+      <a routerLink="/admin" class="pull-right"><fa-icon [icon]="faCog"></fa-icon> Quản lý</a>
+  </div>
+</div>

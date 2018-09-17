@@ -1,0 +1,23 @@
+<mat-table #table [dataSource]="tableData" matSort class="ss-table-material">
+    
+  <!-- Columns -->
+  <ng-container *ngFor="let col of tableData.columnsDefine" [matColumnDef]="col.field">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> {{col.label}} </mat-header-cell>
+    <mat-cell *matCellDef="let element" [ngClass]="{'text-center': col.isCenter}">
+      <ng-container *ngIf="col.template; else ssTableCellElseBlock">
+        <ng-container [ngTemplateOutlet]="col.template"  [ngTemplateOutletContext]="{element: element}"></ng-container>
+      </ng-container>
+      <ng-template #ssTableCellElseBlock>{{element[col.field]}}</ng-template>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="tableData.displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: tableData.displayedColumns;" (click)="onRowClick(row)"></mat-row>
+  
+</mat-table>
+
+<mat-paginator #paginator
+  [pageSize]="20"
+  [pageSizeOptions]="[5, 10, 20, 50]"
+  [showFirstLastButtons]="true">
+</mat-paginator>

@@ -1,0 +1,47 @@
+/// Header
+$navbar-height: 64px !default;
+$navbar-bg: #fff !default;
+
+.navbar {
+    background-color: $navbar-bg;
+    @include mat-elevation(3);
+
+    a.navbar-brand {
+        color: $cyan;
+        text-transform: uppercase;
+        cursor: pointer;
+
+        // &:hover {
+        //     // color: #fff;
+        // }
+    }
+
+    .user-info {
+        img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+        }
+        .user-info-container {
+            display: inline-block;
+            vertical-align: middle;
+            small {
+                display: block;
+            }
+        }
+    }
+
+    &.fixed-top-navbar {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .logout-button {
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

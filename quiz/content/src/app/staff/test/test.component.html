@@ -1,0 +1,44 @@
+<div class="test-screen">
+    <div class="test-info">
+        Đợt thi: <strong>{{this.testInfo.examName}}</strong> - Chuyên ngành: <strong>{{ this.testInfo.categoryName}}</strong> - Thí sinh: <strong>{{this.testInfo.staffName}}</strong> - Mã: <strong>{{this.testInfo.staffCode}}</strong>
+        
+        <button mat-raised-button color="success" class="pull-right" (click)="preFinish()" [disabled]="isFinish">Nộp bài</button>
+        <button mat-raised-button color="warn" class="pull-right" style="margin-right: 32px;" (click)="preExit()" [disabled]="isFinish">Thoát</button>
+    </div>
+
+    <div class="test-question">
+        <div class="test-question-wrapper">
+            <div class="actions">
+                <button mat-button (click)="selectQuestion(currentQuestion.index - 1)" [disabled]="currentQuestion.index <= 0"><fa-icon [icon]="faArrowCircleLeft"></fa-icon> Câu trước</button>
+                <button mat-mini-fab color="{{currentQuestion.isFlagged ? 'accent' : 'basic' }}" matTooltip="{{currentQuestion.isFlagged ? 'Gỡ ' : '' }} Đánh dấu câu hỏi" (click)="currentQuestion.isFlagged = !currentQuestion.isFlagged"><fa-icon [icon]="faFlag"></fa-icon></button>
+                <button mat-button (click)="selectQuestion(currentQuestion.index + 1)" [disabled]="currentQuestion.index >= questions.length - 1">Câu sau <fa-icon [icon]="faArrowCircleRight"></fa-icon></button>
+            </div>
+
+            <div class="test-question-content">{{currentQuestion.content}}</div>
+            
+            <div class="test-question-anwser" *ngIf="currentQuestion.anwser1">
+                <mat-checkbox [(ngModel)]="anwsers[currentQuestion.index].is_anwser1_right" (change)="saveAnwsers()"> {{currentQuestion.anwser1}}</mat-checkbox>
+            </div>
+            <div class="test-question-anwser" *ngIf="currentQuestion.anwser2">
+                <mat-checkbox [(ngModel)]="anwsers[currentQuestion.index].is_anwser2_right" (change)="saveAnwsers()"> {{currentQuestion.anwser2}}</mat-checkbox>
+            </div>
+            <div class="test-question-anwser" *ngIf="currentQuestion.anwser3">
+                <mat-checkbox [(ngModel)]="anwsers[currentQuestion.index].is_anwser3_right" (change)="saveAnwsers()"> {{currentQuestion.anwser3}}</mat-checkbox>
+            </div>   
+            <div class="test-question-anwser" *ngIf="currentQuestion.anwser4">
+                <mat-checkbox [(ngModel)]="anwsers[currentQuestion.index].is_anwser4_right" (change)="saveAnwsers()"> {{currentQuestion.anwser4}}</mat-checkbox>
+            </div>
+        </div>
+    </div>
+    <div class="test-questions-container">
+        <div class="test-time text-center">
+            <div class="test-time-info">Thời gian làm bài {{ exam.time_in_minute }} phút</div>
+            <div class="test-time-used">{{ timeUsedInMinute }}</div>
+        </div>
+        <div class="test-questions-list text-center">
+            <button *ngFor="let question of questions; let index = index;" mat-fab color="{{getColor(question)}}" (click)="selectQuestion(index)">
+                {{index + 1}}
+            </button>
+        </div>
+    </div>
+</div>

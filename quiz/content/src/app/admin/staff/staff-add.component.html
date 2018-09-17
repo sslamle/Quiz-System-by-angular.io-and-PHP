@@ -1,0 +1,30 @@
+<section>
+    <div class="section-header">
+        Thêm nhân viên
+
+        <button class="pull-right" mat-raised-button color="primary" (click)="save()" [disabled]="isRequesting"><fa-icon [icon]="faSave"></fa-icon> Lưu</button>        
+        <button class="pull-right" mat-raised-button color="accent" (click)="addStaff()"><fa-icon [icon]="faPlus"></fa-icon> Thêm</button>
+    </div>
+</section>
+<div class="section-body p-r-none p-l-none">
+    <table class="table-like-excel">
+        <thead>
+            <tr>
+                <th style="width: 20px">#</th>
+                <th style="width: 280px">Đơn vị</th>
+                <th style="width: 180px">Mã nhân viên</th>
+                <th>Tên nhân viên</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let staff of staffs; let index = index;">
+                <td><strong>{{index + 1}}</strong></td>
+                <td><ss-autocomplete [(ngModel)]="staff.unit_id" [source]="units"></ss-autocomplete></td>
+                <td><input [(ngModel)]="staff.code"/></td>
+                <td><input [(ngModel)]="staff.name" (keydown.Tab)="addStaff(index)"/></td>
+                <td class="text-center"><span (click)="remove(staff)" tabindex="-1" class="table-action text-danger pointer" ><fa-icon [icon]="faTrashAlt"></fa-icon> Xóa</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
